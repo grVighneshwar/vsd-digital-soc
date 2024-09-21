@@ -53,6 +53,18 @@ There are three diffrent regions
 In the switching action Decoupling capacitors provide power supply to the circut since its placed near the blocks there's no drop in voltage
 ![image](https://github.com/user-attachments/assets/e7689c9d-26dc-42b1-a626-b3f57abe14b0)
 ### **Power planning**
+![image](https://github.com/user-attachments/assets/8df94da6-0ff2-4491-a6b6-20e477e9a77a)
+### **Pin placement**
+Placing the pins based on the design
+![image](https://github.com/user-attachments/assets/68f11e46-a18c-4783-9ee5-355c78a7b9e6)
+### ** Logical Cell Placement Blockage**
+![image](https://github.com/user-attachments/assets/32238319-a369-4c56-bcf6-bae0b22452f1)
+### **Steps for Floorplan**
+> To run the floorplan in the open lane
+```
+run_floorplan
+```
+
 
 
 
