@@ -43,6 +43,19 @@ run_synthesis
 ![image](https://github.com/user-attachments/assets/73c3b921-22f4-4b2f-b37e-ca2100032e5e)
 ### **Define the locations of preplaced cells**
 ![image](https://github.com/user-attachments/assets/da46511d-b5a5-44f2-bcf6-e67ea5a34344)
+### **Noise margin**
+There are three diffrent regions 
+- Logic 0 region
+- Undefined region
+- Logic 1 region
+  ![image](https://github.com/user-attachments/assets/decf9f30-1b71-4e63-9a4f-4fde78debd8b)
+### **Decoupling capacitors**
+In the switching action Decoupling capacitors provide power supply to the circut since its placed near the blocks there's no drop in voltage
+![image](https://github.com/user-attachments/assets/e7689c9d-26dc-42b1-a626-b3f57abe14b0)
+### **Power planning**
+
+
+
 
 
 
