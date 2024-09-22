@@ -64,6 +64,11 @@ Placing the pins based on the design
 ```
 run_floorplan
 ```
+Floorplan run successfull
+![Untitled](https://github.com/user-attachments/assets/37482254-04ea-4317-902b-089240987eb1)
+![Untitled](https://github.com/user-attachments/assets/224e8f0e-e290-4957-bea3-961866886902)
+** seeing the pin numbers in the logs folder**
+![Untitled](https://github.com/user-attachments/assets/18abc057-6af3-4719-b25e-58bdc2f7f3f0)
 
 
 
