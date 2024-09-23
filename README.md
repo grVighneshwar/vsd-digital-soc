@@ -69,6 +69,77 @@ Floorplan run successfull
 ![Untitled](https://github.com/user-attachments/assets/224e8f0e-e290-4957-bea3-961866886902)
 ** seeing the pin numbers in the logs folder**
 ![Untitled](https://github.com/user-attachments/assets/18abc057-6af3-4719-b25e-58bdc2f7f3f0)
+> In openlane design file core utilization
+
+![Untitled](https://github.com/user-attachments/assets/dfa8e800-b20e-425d-9a3f-9e90a12d3966)
+> In open lane configuration folder core utilization
+![Untitled](https://github.com/user-attachments/assets/9b6a518c-203f-48d6-b4b0-609d570877cf)
+> In runs folder core utilization
+![Untitled](https://github.com/user-attachments/assets/02851d21-5dbd-4184-9b5e-917d286975c0)
+
+### **Steps to generate layout using magic**
+- Go into floorplan folder
+```
+// path for floorplan folder
+/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/22-09_11-03/results/floorplan
+```
+- To veiw the layout in the magic window\
+  ```
+  magic -T /home/vsduser//Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &
+  ```
+- To adjust the layout to the window press the key 'S'
+- To make it fit for the window press the key 'V'
+- To see the metal layer and to zoom into the layout left click+ right click and then press Z to zoom in to zoom out press the keys S and V
+- To see the metal layers select the layer and go to tkcon window and typle the command what it'll automatically shows which metal is used
+
+  ### **Outcomes of the lab**
+![Untitled](https://github.com/user-attachments/assets/224728c8-bcb0-497f-bca2-807ce8b1a778)
+![Untitled](https://github.com/user-attachments/assets/439b4af8-0579-4226-8319-31a75b8c26b5)
+![Untitled](https://github.com/user-attachments/assets/326e0e6b-7c6c-45da-86f8-b70d55d7960d)
+
+### **Library binding and placements**
+- Bind netlist with physical cells
+![image](https://github.com/user-attachments/assets/ea21f3dc-9949-48f5-a26a-417f3c0917f3)
+- Placing the blocks based on the io pins and connections
+  ![image](https://github.com/user-attachments/assets/19cf5b3d-55af-409f-8f54-98bf104741e0)
+- Optimizing the placements: based on the distance between blocks and pin adding buffers or repeters to maintain the signal quality
+  ![image](https://github.com/user-attachments/assets/f5fcafd8-fd71-49e7-9971-9b3222214c86)
+
+### **Need for libraries and charectorization**
+IC design flow
+- Logic synthesis
+- Floorplanning
+- Placement
+- Clock synthesis
+- Routing
+- Static Time analysis
+
+### **Congestion aware placement using RePlAce**
+Two types of placements
+- Global placement
+- Detailed placement
+
+What we are doing in this lab is Global placement
+To open the placement blocks
+```
+// First run on open lane
+run_placement
+//go to placement folder which is created in results and type the commmand
+magic -T /home/vsduser//Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
+```
+![Untitled](https://github.com/user-attachments/assets/2869760e-06b7-424a-8470-f56099491996)
+### **Cell design flow**
+![image](https://github.com/user-attachments/assets/c9417dd5-be1c-4d06-ad69-a78f81bc9ebf)
+Timing considorations
+![image](https://github.com/user-attachments/assets/d9091589-a225-41e3-ac72-c59eaa47510c)
+Propogation delay
+
+
+
+  
+
+
+  
 
 
 
