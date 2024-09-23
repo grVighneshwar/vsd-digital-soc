@@ -135,9 +135,21 @@ Timing considorations
 Propogation delay
 
 
-
-  
-
+## **Day 3**
+### **Spice deck creation for CMOS inverter
+![image](https://github.com/user-attachments/assets/5977ee74-d8bc-4d6e-865a-08963319968e)
+**Technical Specs for CMOS inverter**
+![image](https://github.com/user-attachments/assets/3515122a-2445-44ca-9a9d-be8feedfbc7c)
+**Cloning the vsdstdcelldesign repo**
+> Type the command in the on the folder openlane
+```
+git clone https://github.com/nickson-jose/vsdstdcelldesign --depth 1
+```
+> to see the layout of cmos inverter
+```
+magic -T sky130A.tech sky130_inv.mag &
+```
+![Untitled](https://github.com/user-attachments/assets/1498a2d6-2e95-4897-9588-3a90cb6e9baa)
 
   
 
