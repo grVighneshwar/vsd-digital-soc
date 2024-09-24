@@ -136,7 +136,7 @@ Propogation delay
 
 
 ## **Day 3**
-### **Spice deck creation for CMOS inverter
+### **Spice deck creation for CMOS inverter**
 ![image](https://github.com/user-attachments/assets/5977ee74-d8bc-4d6e-865a-08963319968e)
 **Technical Specs for CMOS inverter**
 ![image](https://github.com/user-attachments/assets/3515122a-2445-44ca-9a9d-be8feedfbc7c)
@@ -150,8 +150,41 @@ git clone https://github.com/nickson-jose/vsdstdcelldesign --depth 1
 magic -T sky130A.tech sky130_inv.mag &
 ```
 ![Untitled](https://github.com/user-attachments/assets/1498a2d6-2e95-4897-9588-3a90cb6e9baa)
+> goto tckon.tcl window to create the spice deck and type the command
+```
+/ to extract all the files
+extract all
+// all the files from sky_130_inv will be copied to sky130_inv.ext
+ext2spice rthresh 0 cthresh 0
+ext2spice
+// itll create the spice deck
+```
+### **Steps to create SPICE deck**
+- Goto the file vsdstdcelldesign
+- to see the spice file
+  ```
+  vim sky130_inv.spice
+  ```
+  ![image](https://github.com/user-attachments/assets/557c566f-09a7-42d2-b232-1cd2c2faaf78)
 
-  
+- to edit the sepcs defined in the spice deck
+   ```
+   gedit sky130_inv.spice
+   ```
+- to run the spice simulation
+   ```
+   ngspice sky130_inv.spice
+   ```
+   ![image](https://github.com/user-attachments/assets/b61ab130-fd4d-4dca-b93c-f124a40bbc01)
+
+- it will show all the specs and to plot
+  ```
+  plot y vs time a
+  ```
+  ![image](https://github.com/user-attachments/assets/e6eb2813-1942-4e33-a7a5-cfca37e141e5)
+  rise time =0.01667 ns
+  fall time =0.39659ns
+
 
 
 
