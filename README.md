@@ -175,17 +175,58 @@ ext2spice
    ```
    ngspice sky130_inv.spice
    ```
-   ![image](https://github.com/user-attachments/assets/b61ab130-fd4d-4dca-b93c-f124a40bbc01)
+  ![image](https://github.com/user-attachments/assets/3b497a33-8286-4034-87f1-65ff6b26399f)
+
 
 - it will show all the specs and to plot
   ```
   plot y vs time a
   ```
-  ![image](https://github.com/user-attachments/assets/e6eb2813-1942-4e33-a7a5-cfca37e141e5)
-  rise time =0.01667 ns
+ ![image](https://github.com/user-attachments/assets/5f7e3437-6486-49fe-a103-95e59b802bbe)
+
+  rise time = (5.5-5.184)=0.316 ns
   fall time =0.39659ns
 
+  ### **Preparing files for drc check**
 
+  - go to root folder
+```
+wget http://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz
+```
+- after donloading type the command
+```
+tar xfz drc_tests
+```
+- now change the directory to drc tests
+- run the magic
+```
+magic -d XR
+```
+- in tckon.tcl filoe
+```
+drc check
+```
+- to resolve the drc error go to tech folder and edit the required feilds
+  ```
+  gedit sky130A.tech
+  ```
+  ![image](https://github.com/user-attachments/assets/431bebb9-6730-4edf-a3ac-6c261b16902d)
+![image](https://github.com/user-attachments/assets/f8dd4c35-71f5-48f9-8321-10c05da2bf68)
+
+- again load the tech file after editing
+  ```
+  load sky130a.tech
+  drc check
+  ```
+  ![image](https://github.com/user-attachments/assets/46f571d5-c1a9-4640-9c62-bba2e6f1806f)
+
+
+## **Day 4**
+- creating lef file
+  ```
+  // type the command in the tcl window
+  lef write
+```
 
 
 
