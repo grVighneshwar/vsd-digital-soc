@@ -71,7 +71,8 @@ Floorplan run successfull
 ![Untitled](https://github.com/user-attachments/assets/18abc057-6af3-4719-b25e-58bdc2f7f3f0)
 > In openlane design file core utilization
 
-![Untitled](https://github.com/user-attachments/assets/dfa8e800-b20e-425d-9a3f-9e90a12d3966)
+![image](https://github.com/user-attachments/assets/4a23c4c6-1c09-4f2a-a029-3c23cc8a8886)
+
 > In open lane configuration folder core utilization
 ![Untitled](https://github.com/user-attachments/assets/9b6a518c-203f-48d6-b4b0-609d570877cf)
 > In runs folder core utilization
