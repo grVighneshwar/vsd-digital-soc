@@ -224,10 +224,11 @@ drc check
 
 ## **Day 4**
 - creating lef file
-  ```
+```
   // type the command in the tcl window
   lef write
 ```
+![image](https://github.com/user-attachments/assets/d435b1f0-dae0-4edf-8ddb-1a3fd3eb96cb)
 
 
 
