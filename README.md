@@ -225,15 +225,159 @@ drc check
 ## **Day 4**
 - creating lef file
 ```
-  // type the command in the tcl window
+  # type the command in the tcl window
   lef write
 ```
-![image](https://github.com/user-attachments/assets/d435b1f0-dae0-4edf-8ddb-1a3fd3eb96cb)
-![image](https://github.com/user-attachments/assets/f8a93b56-681d-44af-a930-e26fc282f5b8)
-![image](https://github.com/user-attachments/assets/8c7d6a46-fdec-44fd-a740-a51c01b3d070)
+- Copying tosrc directory
+```
+# Copy lef file
+cp sky130_vsdinv.lef ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
+# Copy lib files
+cp libs/sky130_fd_sc_hd__* ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
+```
+- editing config.tcl file
+  ![image](https://github.com/user-attachments/assets/ce865c6e-ce6f-4b5a-9453-5c9c4cbc2dc3)
+  - run the docker and open open lane
+  - To work on the previous created directory
+  ```
+  prep -design picorv32a -tag 22-09_11-03
+  set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+  add_lefs -src $lefs
+  ```
+ - now run the synthesis
+![image](https://github.com/user-attachments/assets/86e7361a-a657-4d25-9f77-f5f76fddfd6a)
+![image](https://github.com/user-attachments/assets/885b213c-90ad-4d9a-bdf9-1a7121a3de1b)
+```
+echo $::env(SYNTH_STRATEGY)
+
+# set new value for SYNTH_STRATEGY
+set ::env(SYNTH_STRATEGY) "DELAY 3"
+
+#  display current value of variable SYNTH_BUFFERING
+echo $::env(SYNTH_BUFFERING)
+echo $::env(SYNTH_SIZING)
+set ::env(SYNTH_SIZING) 1
+
+ display current value of variable SYNTH_DRIVING_CELL to check whether it's the proper cell or not
+echo $::env(SYNTH_DRIVING_CELL)
+
+```
+- now re run the synthesis
+![image](https://github.com/user-attachments/assets/c857b767-91d6-4ca3-a286-92bc6c299492)
+- now run the floorplan
+```
+init_floorplan
+place_io
+tap_decap_or
+```
+- run placement
+- now run the magic in othewr terminal to see weather our cell is modified or what
+![image](https://github.com/user-attachments/assets/d29936b3-8795-4d5f-9380-a6551800176e)
+![image](https://github.com/user-attachments/assets/da48e821-3ccf-4a71-930e-b5e4cc6d6d6b)
+![image](https://github.com/user-attachments/assets/9ca38ad9-1f2a-4bee-9c84-10bb75e056dd)
+
+- pre-sta.conf
+![image](https://github.com/user-attachments/assets/53b20520-f432-4af1-89a8-c9f062fdf055)
+-run the sta
+```
+sta pre_sta.conf
+```
+![image](https://github.com/user-attachments/assets/ccc6a4e3-e362-42db-9084-c1576495a3d4)
+![image](https://github.com/user-attachments/assets/34f4b7d4-1570-461b-b307-bf2b9cc24f92)
+- check for the cells which has more delay and fanouts replace them with other
+![WhatsApp Image 2024-09-28 at 19 46 38_2f2cf062](https://github.com/user-attachments/assets/21e0d960-bbe1-47db-8232-bd96b74163c6)
+![WhatsApp Image 2024-09-28 at 19 46 09_2db2d077](https://github.com/user-attachments/assets/7f5181d7-9ffb-44bf-a610-f26c1ab12031)
+- doing it untill it gets the minimal value
+- slack should be in positive value
+- write the verilog file
+```
+
+write_verilog /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/25-03_18-52/results/synthesis/picorv32a.synthesis.v
+
+```
+- Run the neccesary commands to run the synthesis
+- Post-CTS OpenROAD timing analysis.
+```
+  
+openroad
+
+# Reading lef file
+read_lef /openLANE_flow/designs/picorv32a/runs/24-03_10-03/tmp/merged.lef
+
+# Reading def file
+read_def /openLANE_flow/designs/picorv32a/runs/24-03_10-03/results/cts/picorv32a.cts.def
+
+# Creating an OpenROAD database to work with
+write_db pico_cts.db
+read_db pico_cts.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/24-03_10-03/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+link_design picorv32a
+
+# Read in the custom sdc we created
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+
+# Setting all clocks as propagated clocks
+set_propagated_clock [all_clocks]
+# Generating custom timing report
+report_checks -path_delay min_max -fields {slew trans net cap input_pins} -format full_clock_expanded -digits 4
+```
+Commands to be run in OpenLANE flow to do OpenROAD timing analysis
+```
+set ::env(CTS_CLK_BUFFER_LIST) [lreplace $::env(CTS_CLK_BUFFER_LIST) 0 0]
+set ::env(CURRENT_DEF) /openLANE_flow/designs/picorv32a/runs/24-03_10-03/results/placement/picorv32a.placement.def
 
 
+run_cts
 
+
+openroad
+
+
+read_lef /openLANE_flow/designs/picorv32a/runs/24-03_10-03/tmp/merged.lef
+
+
+read_def /openLANE_flow/designs/picorv32a/runs/24-03_10-03/results/cts/picorv32a.cts.def
+
+
+write_db pico_cts1.db
+
+
+read_db pico_cts.db
+
+
+read_verilog /openLANE_flow/designs/picorv32a/runs/24-03_10-03/results/synthesis/picorv32a.synthesis_cts.v
+
+
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+
+
+link_design picorv32a
+
+
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+
+
+set_propagated_clock [all_clocks]
+
+report_checks -path_delay min_max -fields {slew trans net cap input_pins} -format full_clock_expanded -digits 4
+report_clock_skew -hold
+
+report_clock_skew -setup
+
+# Exit to OpenLANE flow
+exit
+
+
+echo $::env(CTS_CLK_BUFFER_LIST)
+
+# Inserting 'sky130_fd_sc_hd__clkbuf_1' to first index of list
+set ::env(CTS_CLK_BUFFER_LIST) [linsert $::env(CTS_CLK_BUFFER_LIST) 0 sky130_fd_sc_hd__clkbuf_1]
+
+# Checking current value of 'CTS_CLK_BUFFER_LIST'
+echo $::env(CTS_CLK_BUFFER_LIST)
+
+```
 
 
 
