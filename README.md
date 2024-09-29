@@ -167,7 +167,7 @@ run_synthesis
 ![Untitled](https://github.com/user-attachments/assets/32e27963-1aad-4c5a-a337-a88582eef55a)
 ![Untitled](https://github.com/user-attachments/assets/47c72f8b-1673-42d5-b797-671b06aaefed)
 
-** calculating flop ratio**
+**calculating flop ratio**
 flopratio       = no of dflipflop/total no of cells
                 = 1613/14876
                 = 0.108429685
