@@ -168,10 +168,14 @@ run_synthesis
 ![Untitled](https://github.com/user-attachments/assets/47c72f8b-1673-42d5-b797-671b06aaefed)
 
 **calculating flop ratio**
-flopratio       = no of dflipflop/total no of cells
+
+flop ratio       = no of dflipflop/total no of cells
+
                 = 1613/14876
                 = 0.108429685
+
 %of flop ratio  = 10.842 
+
 
 ## **Day-2**
 
@@ -259,9 +263,9 @@ Two types of placements
 What we are doing in this lab is Global placement
 To open the placement blocks
 ```
-#First run on open lane
+# First run on open lane
 run_placement
-#go to placement folder which is created in results and type the commmand
+# go to placement folder which is created in results and type the commmand
 magic -T /home/vsduser//Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
 ```
 ![Untitled](https://github.com/user-attachments/assets/2869760e-06b7-424a-8470-f56099491996)
@@ -289,12 +293,12 @@ magic -T sky130A.tech sky130_inv.mag &
 ![Untitled](https://github.com/user-attachments/assets/1498a2d6-2e95-4897-9588-3a90cb6e9baa)
 > goto tckon.tcl window to create the spice deck and type the command
 ```
-/ to extract all the files
+# to extract all the files
 extract all
-// all the files from sky_130_inv will be copied to sky130_inv.ext
+# all the files from sky_130_inv will be copied to sky130_inv.ext
 ext2spice rthresh 0 cthresh 0
 ext2spice
-// itll create the spice deck
+# itll create the spice deck
 ```
 ### **Steps to create SPICE deck**
 - Goto the file vsdstdcelldesign
@@ -322,6 +326,7 @@ ext2spice
  ![image](https://github.com/user-attachments/assets/5f7e3437-6486-49fe-a103-95e59b802bbe)
 
   rise time = (5.5-5.184)=0.316 ns
+  
   fall time =0.39659ns
 
   ### **Preparing files for drc check**
@@ -358,6 +363,7 @@ drc check
   ![image](https://github.com/user-attachments/assets/46f571d5-c1a9-4640-9c62-bba2e6f1806f)
 
 
+
 ## **Day 4**
 
 - creating lef file
@@ -367,9 +373,9 @@ drc check
 ```
 - Copying tosrc directory
 ```
-#Copy lef file
+# Copy lef file
 cp sky130_vsdinv.lef ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
-#Copy lib files
+# Copy lib files
 cp libs/sky130_fd_sc_hd__* ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
 ```
 - editing config.tcl file
