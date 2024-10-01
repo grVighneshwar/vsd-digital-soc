@@ -683,3 +683,47 @@ TritonRoute is integrated into the OpenROAD flow, allowing for seamless use in a
 ![image](https://github.com/user-attachments/assets/11ec44ba-d057-4e1a-9df3-adbd54c6729f)
 ![image](https://github.com/user-attachments/assets/3d75988f-541a-4e7c-92fc-bca7a9dfa021)
 ![image](https://github.com/user-attachments/assets/fb2ea6d8-39b0-45da-bda6-28f81c72a234)
+
+- Post-Route parasitic extraction using SPEF extractor.
+```
+cd Desktop/work/tools/openlane_working_dir/openlane/scripts/SPEF_EXTRACTOR
+
+# Command extract spef
+python3 main.py /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/22-09_11-03/tmp/merged.lef /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/22-09_11-03/results/routing/picorv32a.def
+```
+- Post-Route OpenSTA timing analysis with the extracted parasitics of the route.
+ ```
+openroad
+read_lef /openLANE_flow/designs/picorv32a/runs/26-03_08-45/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/26-03_08-45/results/routing/picorv32a.def
+write_db pico_route.db
+read_db pico_route.db
+
+read_verilog /openLANE_flow/designs/picorv32a/runs/26-03_08-45/results/synthesis/picorv32a.synthesis_preroute.v
+
+# Read library for design
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+
+# Link design and library
+link_design picorv32a
+
+# Read in the custom sdc we created
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+
+# Setting all cloks as propagated clocks
+set_propagated_clock [all_clocks]
+
+# Read SPEF
+read_spef /openLANE_flow/designs/picorv32a/runs/26-03_08-45/results/routing/picorv32a.spef
+
+# Generating custom timing report
+report_checks -path_delay min_max -fields {slew trans net cap input_pins} -format full_clock_expanded -digits 4
+
+# Exit to OpenLANE flow
+exit
+```
+- Extracted spef file
+  ![image](https://github.com/user-attachments/assets/3a9789a9-b9d2-4be8-9d21-e3f8c89a2ff2)
+- Generated report
+  ![image](https://github.com/user-attachments/assets/5f8a137d-06d5-42b6-9646-3f35991b13d1)
+  ![image](https://github.com/user-attachments/assets/46d0485d-fb21-47b9-9c76-0203a6ebd52e)
